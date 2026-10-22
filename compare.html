@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Compare Messages — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <div class="sidebar-section-label">Analyze</div>
+      <a href="url-analyzer.html">🔗 URL Analyzer</a>
+      <a href="message-analyzer.html">💬 Message Analyzer</a>
+      <a href="screenshot-analyzer.html">🖼️ Screenshot Analyzer</a>
+      <a href="compare.html" class="active">⚖️ Compare Messages</a>
+      <div class="sidebar-section-label">Learn</div>
+      <a href="simulator.html">🎯 Scam Simulator</a>
+      <a href="learning.html">📚 Learning Center</a>
+      <div class="sidebar-section-label">Records</div>
+      <a href="history.html">🕓 Scan History</a>
+      <a href="admin.html" data-admin-only class="hidden">🛡️ Admin Panel</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1>Fake vs Genuine Comparison</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Paste two messages to see which is more likely a scam.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <form id="compare-form">
+      <div class="card-grid" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="field">
+            <label for="message-a">Message A</label>
+            <textarea id="message-a" placeholder="Paste the first message..." required maxlength="10000"></textarea>
+          </div>
+        </div>
+        <div class="card">
+          <div class="field">
+            <label for="message-b">Message B</label>
+            <textarea id="message-b" placeholder="Paste the second message..." required maxlength="10000"></textarea>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="compare-btn">
+        <span id="compare-btn-text">Compare Messages</span>
+      </button>
+    </form>
+
+    <div id="result-section" class="hidden" style="margin-top:28px;">
+      <div class="card" style="margin-bottom:20px;text-align:center;">
+        <span class="text-muted" style="font-size:0.8rem;">MORE SUSPICIOUS</span>
+        <h2 id="more-suspicious-label" style="margin:6px 0 0;">—</h2>
+      </div>
+
+      <div class="card-grid" style="margin-bottom:20px;">
+        <div class="card">
+          <h3>Message A</h3>
+          <div style="display:flex;align-items:center;gap:12px;margin:10px 0;">
+            <span class="badge" id="badge-a">—</span>
+            <span class="mono">Risk: <strong id="risk-a">—</strong>/100</span>
+          </div>
+          <div id="indicators-a"></div>
+        </div>
+        <div class="card">
+          <h3>Message B</h3>
+          <div style="display:flex;align-items:center;gap:12px;margin:10px 0;">
+            <span class="badge" id="badge-b">—</span>
+            <span class="mono">Risk: <strong id="risk-b">—</strong>/100</span>
+          </div>
+          <div id="indicators-b"></div>
+        </div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;margin-bottom:20px;">
+        <div class="card">
+          <h3>Similarities</h3>
+          <ul id="similarities-list" style="margin:0;"></ul>
+        </div>
+        <div class="card">
+          <h3>Differences</h3>
+          <ul id="differences-list" style="margin:0;"></ul>
+        </div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <h3>Social Engineering Techniques</h3>
+          <div id="techniques-list"></div>
+        </div>
+        <div class="card">
+          <h3>Explanation</h3>
+          <p id="summary-text" class="text-secondary" style="margin:0;">—</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+      <div class="icon">⚖️</div>
+      <p>Paste two messages above to compare them side by side.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/compare.js"></script>
+</body>
+</html>

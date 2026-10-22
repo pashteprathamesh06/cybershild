@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create Account — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">CS</span> CyberShield AI</a>
+    <div></div>
+    <div class="nav-actions">
+      <span class="text-muted" style="font-size:0.88rem;">Already have an account?</span>
+      <a href="login.html" class="btn btn-secondary btn-sm">Log In</a>
+    </div>
+  </div>
+</nav>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <div class="card">
+      <span class="eyebrow">Get started</span>
+      <h2 style="margin-top:10px;">Create your free account</h2>
+      <p class="text-muted" style="margin-bottom:26px;">Start scanning URLs, messages, and screenshots in seconds.</p>
+
+      <form id="register-form">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" required autocomplete="name" placeholder="Jane Doe" maxlength="80" />
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" required autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" required autocomplete="new-password" placeholder="At least 8 characters, 1 number" minlength="8" />
+          <div class="field-hint">Minimum 8 characters, must include a number.</div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="register-btn">
+          <span id="register-btn-text">Create Account</span>
+        </button>
+      </form>
+
+      <div class="divider-or">or</div>
+      <p class="text-center text-muted" style="font-size:0.88rem;">
+        Already registered? <a href="login.html" style="color:var(--brand-strong);font-weight:600;">Log in</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+redirectIfLoggedIn();
+
+document.getElementById('register-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('register-btn');
+  const btnText = document.getElementById('register-btn-text');
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  btn.disabled = true;
+  btnText.innerHTML = '<span class="spinner"></span>';
+
+  try {
+    const data = await CyberShieldAPI.post('/auth/register', { name, email, password });
+    CyberShieldAPI.setSession(data.token, data.user);
+    showToast('Account created — redirecting...', 'success', 1500);
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+  } catch (err) {
+    const detail = err.errors && err.errors.length ? err.errors[0].message : err.message;
+    showToast(detail || 'Registration failed', 'error');
+    btn.disabled = false;
+    btnText.textContent = 'Create Account';
+  }
+});
+</script>
+</body>
+</html>

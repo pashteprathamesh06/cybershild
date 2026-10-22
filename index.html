@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CyberShield AI — Intelligent Scam & Phishing Detection</title>
+<meta name="description" content="Detect phishing links, scam messages, and fraudulent screenshots in seconds with AI-powered risk analysis." />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand"><span class="brand-mark">CS</span> CyberShield AI</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How it Works</a>
+      <a href="#awareness">Scam Awareness</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm">Log In</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">AI Threat Detection · Live</span>
+      <h1>Know if it's a scam <br />before it costs you.</h1>
+      <p class="lead">CyberShield AI reads suspicious URLs, messages, and screenshots the way a security analyst would — then hands you a plain-English risk score, confidence rating, and next step in seconds.</p>
+      <div class="hero-actions">
+        <a href="register.html" class="btn btn-primary">Start Scanning — Free</a>
+        <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num">10</span><div class="label">Scam categories detected</div></div>
+        <div class="hero-stat"><span class="num">3</span><div class="label">Analysis modes: URL, message, image</div></div>
+        <div class="hero-stat"><span class="num">&lt;10s</span><div class="label">Average analysis time</div></div>
+      </div>
+    </div>
+
+    <div class="scan-console" aria-hidden="true">
+      <div class="line"><span class="prompt">$</span> cybershield analyze --url "secure-paypal-login.verify-account.info"</div>
+      <div class="line">→ checking HTTPS ................ <span class="warn">missing</span></div>
+      <div class="line">→ domain age lookup .............. flagged</div>
+      <div class="line">→ suspicious keywords ............ 4 found</div>
+      <div class="line">→ punycode check .................. clear</div>
+      <div class="line">→ running AI risk model ...........</div>
+      <div class="line danger">✖ CLASSIFICATION: SCAM — Phishing (Banking)</div>
+      <div class="line danger">✖ RISK SCORE: 92 / 100 · CONFIDENCE: 96%</div>
+      <div class="line">→ recommended action: <span class="prompt">Do not enter credentials. Report &amp; block.</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Platform</span>
+      <h2>One console, every scam vector</h2>
+      <p>From a single link to a full screenshot of a chat thread, CyberShield AI covers the formats scams actually arrive in.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>URL Analyzer</h3>
+        <p>Checks HTTPS, domain structure, punycode tricks, shorteners, and suspicious keywords, then layers on AI classification.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Message Analyzer</h3>
+        <p>Scans email, SMS, WhatsApp, Telegram, Instagram, and Facebook messages for phishing, OTP, UPI, and job/investment scams.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🖼️</div>
+        <h3>Screenshot Analyzer</h3>
+        <p>Upload a screenshot — OCR extracts the text, then the same AI threat model analyzes it for red flags.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Fake vs Genuine</h3>
+        <p>Paste two messages side by side and see exactly which social-engineering techniques set the fake one apart.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>AI Scam Simulator</h3>
+        <p>Practice spotting scams risk-free with realistic, educational scenarios and instant scored feedback.</p>
+      </div>
+      <div class="card feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Learning Center</h3>
+        <p>Ten bite-sized modules covering phishing, OTP fraud, UPI scams, password hygiene, MFA, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Process</span>
+      <h2>How a scan works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="card">
+        <div class="step-num">1</div>
+        <h3>Submit</h3>
+        <p>Paste a URL or message, or upload a screenshot of the suspicious content.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">2</div>
+        <h3>Heuristic scan</h3>
+        <p>Deterministic checks run first — HTTPS, domain structure, keyword matching, OCR text extraction.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">3</div>
+        <h3>AI risk model</h3>
+        <p>Groq-powered AI cross-references the heuristics and produces a classification, risk score, and explanation.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">4</div>
+        <h3>Act with confidence</h3>
+        <p>Get a recommended action and safety tips — plus the scan is saved to your history automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="awareness">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Awareness</span>
+      <h2>Scams evolve. So should your instincts.</h2>
+      <p>Most successful scams don't rely on hacking — they rely on psychology. Recognizing the pattern is often the only defense you need.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card"><h3>⏱ Urgency</h3><p>"Act within 24 hours or your account will be suspended." Manufactured deadlines short-circuit careful thinking.</p></div>
+      <div class="card"><h3>😨 Fear</h3><p>Threats of legal action, fines, or account loss are designed to trigger panic-driven decisions.</p></div>
+      <div class="card"><h3>🏛 Authority</h3><p>Impersonating banks, police, or executives borrows trust that was never earned.</p></div>
+      <div class="card"><h3>❤️ Emotional manipulation</h3><p>Romance and friendship scams build trust over weeks before ever asking for money.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="faq">
+  <div class="container-narrow">
+    <div class="section-head">
+      <span class="eyebrow">FAQ</span>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-item open">
+      <div class="faq-q"><span>Is CyberShield AI free to use?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes. Create a free account to start analyzing URLs, messages, and screenshots, and to keep a searchable history of your scans.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Does it store the content I scan?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Scans are saved to your personal history so you can review past results. Uploaded screenshots are processed for text extraction and then deleted from the server.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>How accurate is the risk score?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Risk scores combine deterministic heuristics with an AI model's contextual judgment, and each result includes a confidence score so you can gauge certainty. Always use your own judgment alongside the tool.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Can I compare two messages to see which is fake?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes — the Compare tool analyzes two messages side by side and highlights which social-engineering techniques distinguish the suspicious one.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><span>Is the Scam Simulator safe to use?</span><span class="faq-icon">+</span></div>
+      <div class="faq-a">Completely. It's a purely educational feature using fictional example scenarios — no real messages are sent and no real links are active.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container-narrow text-center">
+    <h2>Start scanning in under a minute</h2>
+    <p>Free account. No credit card. Your first scan is one click away.</p>
+    <a href="register.html" class="btn btn-primary">Create Free Account</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand"><span class="brand-mark">CS</span> CyberShield AI</a>
+        <p style="margin-top:14px;max-width:32ch;">AI-powered scam and phishing detection for everyday internet users.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="register.html">Get Started</a>
+      </div>
+      <div>
+        <h4>Learn</h4>
+        <a href="#awareness">Scam Awareness</a>
+        <a href="#faq">FAQ</a>
+        <a href="login.html">Log In</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:support@cybershield.ai">support@cybershield.ai</a>
+        <a href="#">Report a Scam</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CyberShield AI. Built for educational purposes.</span>
+      <span>This tool assists judgment — it does not replace it.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

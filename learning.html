@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learning Center — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <div class="sidebar-section-label">Analyze</div>
+      <a href="url-analyzer.html">🔗 URL Analyzer</a>
+      <a href="message-analyzer.html">💬 Message Analyzer</a>
+      <a href="screenshot-analyzer.html">🖼️ Screenshot Analyzer</a>
+      <a href="compare.html">⚖️ Compare Messages</a>
+      <div class="sidebar-section-label">Learn</div>
+      <a href="simulator.html">🎯 Scam Simulator</a>
+      <a href="learning.html" class="active">📚 Learning Center</a>
+      <div class="sidebar-section-label">Records</div>
+      <a href="history.html">🕓 Scan History</a>
+      <a href="admin.html" data-admin-only class="hidden">🛡️ Admin Panel</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1>Learning Center</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Ten modules covering the scams that matter most.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <div id="module-list" class="card-grid">
+      <div class="card text-center" style="padding:40px;grid-column:1/-1;">
+        <div class="spinner" style="margin:0 auto;"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Module detail modal -->
+<div id="module-modal" class="hidden" style="position:fixed;inset:0;background:rgba(10,20,24,0.75);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;">
+  <div class="card" style="max-width:640px;width:100%;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+      <span class="badge badge-neutral" id="modal-category">—</span>
+      <button class="btn btn-ghost btn-sm" id="modal-close">✕ Close</button>
+    </div>
+    <h2 id="modal-title">—</h2>
+    <p id="modal-content" class="text-secondary" style="white-space:pre-wrap;"></p>
+    <h4 style="margin:18px 0 8px;">Key Takeaways</h4>
+    <ul id="modal-takeaways" style="margin:0;"></ul>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/learning.js"></script>
+</body>
+</html>

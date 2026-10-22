@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scan History — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <div class="sidebar-section-label">Analyze</div>
+      <a href="url-analyzer.html">🔗 URL Analyzer</a>
+      <a href="message-analyzer.html">💬 Message Analyzer</a>
+      <a href="screenshot-analyzer.html">🖼️ Screenshot Analyzer</a>
+      <a href="compare.html">⚖️ Compare Messages</a>
+      <div class="sidebar-section-label">Learn</div>
+      <a href="simulator.html">🎯 Scam Simulator</a>
+      <a href="learning.html">📚 Learning Center</a>
+      <div class="sidebar-section-label">Records</div>
+      <a href="history.html" class="active">🕓 Scan History</a>
+      <a href="admin.html" data-admin-only class="hidden">🛡️ Admin Panel</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1>Scan History</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Search, filter, and review every scan you've run.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="toolbar">
+        <div class="field">
+          <input type="text" id="search-input" placeholder="Search by input, category, or summary..." />
+        </div>
+        <select id="type-filter">
+          <option value="">All Types</option>
+          <option value="url">URL</option>
+          <option value="message">Message</option>
+          <option value="screenshot">Screenshot</option>
+          <option value="comparison">Comparison</option>
+        </select>
+        <select id="classification-filter">
+          <option value="">All Results</option>
+          <option value="Safe">Safe</option>
+          <option value="Suspicious">Suspicious</option>
+          <option value="Scam">Scam</option>
+          <option value="Malicious">Malicious</option>
+        </select>
+        <select id="sort-select">
+          <option value="createdAt-desc">Newest First</option>
+          <option value="createdAt-asc">Oldest First</option>
+          <option value="riskScore-desc">Highest Risk First</option>
+          <option value="riskScore-asc">Lowest Risk First</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Type</th><th>Input</th><th>Category</th><th>Risk</th><th>Result</th><th>Date</th><th></th></tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="7" class="text-muted">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="pagination" style="display:flex;justify-content:center;gap:8px;"></div>
+  </main>
+</div>
+
+<!-- Scan detail modal -->
+<div id="detail-modal" class="hidden" style="position:fixed;inset:0;background:rgba(10,20,24,0.75);backdrop-filter:blur(4px);z-index:500;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;">
+  <div class="card" style="max-width:640px;width:100%;" id="detail-modal-content"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/history.js"></script>
+</body>
+</html>

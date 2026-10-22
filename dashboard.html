@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="active">🏠 Dashboard</a>
+      <div class="sidebar-section-label">Analyze</div>
+      <a href="url-analyzer.html">🔗 URL Analyzer</a>
+      <a href="message-analyzer.html">💬 Message Analyzer</a>
+      <a href="screenshot-analyzer.html">🖼️ Screenshot Analyzer</a>
+      <a href="compare.html">⚖️ Compare Messages</a>
+      <div class="sidebar-section-label">Learn</div>
+      <a href="simulator.html">🎯 Scam Simulator</a>
+      <a href="learning.html">📚 Learning Center</a>
+      <div class="sidebar-section-label">Records</div>
+      <a href="history.html">🕓 Scan History</a>
+      <a href="admin.html" data-admin-only class="hidden">🛡️ Admin Panel</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1 id="welcome-heading">Welcome back</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Here's your scam-detection activity at a glance.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <div class="card-grid" style="margin-bottom:24px;">
+      <div class="card stat-card">
+        <span class="label">Total Scans</span>
+        <span class="value" id="stat-total">—</span>
+        <span class="delta text-muted">All-time scans performed</span>
+      </div>
+      <div class="card stat-card">
+        <span class="label" style="color:var(--signal-danger);">High Risk Scans</span>
+        <span class="value" id="stat-high" style="color:var(--signal-danger);">—</span>
+        <span class="delta text-muted">Classified Scam or Malicious</span>
+      </div>
+      <div class="card stat-card">
+        <span class="label" style="color:var(--signal-safe);">Safe Scans</span>
+        <span class="value" id="stat-safe" style="color:var(--signal-safe);">—</span>
+        <span class="delta text-muted">Classified Safe</span>
+      </div>
+      <div class="card stat-card">
+        <span class="label">Detection Rate</span>
+        <span class="value" id="stat-rate">—</span>
+        <span class="delta text-muted">Share of scans flagged risky</span>
+      </div>
+    </div>
+
+    <div class="card-grid" style="grid-template-columns: 1.3fr 1fr; margin-bottom:24px;">
+      <div class="card">
+        <h3>Risk Trend</h3>
+        <p class="text-muted" style="margin-bottom:16px;">Scan volume and average risk over time.</p>
+        <canvas id="trendChart" height="140"></canvas>
+      </div>
+      <div class="card">
+        <h3>Scam Categories</h3>
+        <p class="text-muted" style="margin-bottom:16px;">Distribution across your scans.</p>
+        <canvas id="categoryChart" height="140"></canvas>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-bottom:16px;">
+      <h2 style="font-size:1.2rem;">Quick Actions</h2>
+    </div>
+    <div class="card-grid" style="margin-bottom:24px;">
+      <a href="url-analyzer.html" class="card feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3 style="font-size:1.05rem;">Analyze a URL</h3>
+        <p style="font-size:0.88rem;">Check a suspicious link before you click it.</p>
+      </a>
+      <a href="message-analyzer.html" class="card feature-card">
+        <div class="feature-icon">💬</div>
+        <h3 style="font-size:1.05rem;">Analyze a Message</h3>
+        <p style="font-size:0.88rem;">Paste an SMS, email, or chat message.</p>
+      </a>
+      <a href="screenshot-analyzer.html" class="card feature-card">
+        <div class="feature-icon">🖼️</div>
+        <h3 style="font-size:1.05rem;">Upload a Screenshot</h3>
+        <p style="font-size:0.88rem;">Let OCR + AI read and analyze an image.</p>
+      </a>
+      <a href="simulator.html" class="card feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 style="font-size:1.05rem;">Practice with Simulator</h3>
+        <p style="font-size:0.88rem;">Sharpen your instincts with real scenarios.</p>
+      </a>
+    </div>
+
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3 style="margin:0;">Recent Activity</h3>
+        <a href="history.html" class="btn btn-ghost btn-sm">View All →</a>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Type</th><th>Input</th><th>Category</th><th>Risk</th><th>Result</th><th>Date</th></tr>
+          </thead>
+          <tbody id="recent-activity-body">
+            <tr><td colspan="6" class="text-muted">Loading recent scans...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

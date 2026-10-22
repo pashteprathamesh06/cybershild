@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 User Dashboard</a>
+      <div class="sidebar-section-label">Admin</div>
+      <a href="admin.html" class="active">🛡️ Overview</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1>Admin Panel</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Platform-wide statistics, users, and content management.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <div class="pill-tabs" style="margin-bottom:24px;">
+      <div class="pill-tab active" data-tab="overview">Overview</div>
+      <div class="pill-tab" data-tab="users">Users</div>
+      <div class="pill-tab" data-tab="scans">All Scans</div>
+      <div class="pill-tab" data-tab="content">Learning Content</div>
+    </div>
+
+    <!-- Overview tab -->
+    <section id="tab-overview" class="tab-panel">
+      <div class="card-grid" style="margin-bottom:24px;">
+        <div class="card stat-card"><span class="label">Total Users</span><span class="value" id="admin-total-users">—</span></div>
+        <div class="card stat-card"><span class="label">Total Scans</span><span class="value" id="admin-total-scans">—</span></div>
+        <div class="card stat-card"><span class="label" style="color:var(--signal-danger);">High Risk Scans</span><span class="value" id="admin-high-risk" style="color:var(--signal-danger);">—</span></div>
+        <div class="card stat-card"><span class="label" style="color:var(--signal-safe);">Safe Scans</span><span class="value" id="admin-safe-scans" style="color:var(--signal-safe);">—</span></div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns:1.3fr 1fr;margin-bottom:24px;">
+        <div class="card">
+          <h3>Scan Trend (Platform-wide)</h3>
+          <canvas id="adminTrendChart" height="140"></canvas>
+        </div>
+        <div class="card">
+          <h3>Classification Distribution</h3>
+          <canvas id="adminClassificationChart" height="140"></canvas>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:24px;">
+        <h3>Top Scam Categories</h3>
+        <canvas id="adminCategoryChart" height="90"></canvas>
+      </div>
+
+      <div class="card">
+        <h3>Recent Activity</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>User</th><th>Type</th><th>Category</th><th>Risk</th><th>Result</th><th>Date</th></tr></thead>
+            <tbody id="admin-recent-body"><tr><td colspan="6" class="text-muted">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users tab -->
+    <section id="tab-users" class="tab-panel hidden">
+      <div class="card">
+        <div class="toolbar">
+          <div class="field"><input type="text" id="user-search" placeholder="Search users by name or email..." /></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
+            <tbody id="admin-users-body"><tr><td colspan="6" class="text-muted">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scans tab -->
+    <section id="tab-scans" class="tab-panel hidden">
+      <div class="card">
+        <div class="toolbar">
+          <div class="field"><input type="text" id="scan-search" placeholder="Search scans..." /></div>
+          <select id="admin-type-filter">
+            <option value="">All Types</option>
+            <option value="url">URL</option>
+            <option value="message">Message</option>
+            <option value="screenshot">Screenshot</option>
+            <option value="comparison">Comparison</option>
+          </select>
+          <select id="admin-classification-filter">
+            <option value="">All Results</option>
+            <option value="Safe">Safe</option>
+            <option value="Suspicious">Suspicious</option>
+            <option value="Scam">Scam</option>
+            <option value="Malicious">Malicious</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>User</th><th>Type</th><th>Input</th><th>Category</th><th>Risk</th><th>Result</th><th>Date</th></tr></thead>
+            <tbody id="admin-scans-body"><tr><td colspan="7" class="text-muted">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content tab -->
+    <section id="tab-content" class="tab-panel hidden">
+      <div class="card" style="margin-bottom:20px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <h3 style="margin:0;">Add Learning Module</h3>
+        </div>
+        <form id="content-form">
+          <div class="form-row">
+            <div class="field" style="flex:1;">
+              <label for="content-title">Title</label>
+              <input type="text" id="content-title" required />
+            </div>
+            <div class="field" style="flex:1;">
+              <label for="content-category">Category</label>
+              <select id="content-category">
+                <option>Phishing Awareness</option>
+                <option>OTP Scams</option>
+                <option>UPI Fraud</option>
+                <option>Banking Fraud</option>
+                <option>Social Engineering</option>
+                <option>Password Security</option>
+                <option>MFA Security</option>
+                <option>Fake Job Scams</option>
+                <option>Investment Scams</option>
+                <option>Safe Internet Practices</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="content-summary">Summary</label>
+            <input type="text" id="content-summary" required maxlength="200" />
+          </div>
+          <div class="field">
+            <label for="content-body">Content</label>
+            <textarea id="content-body" required></textarea>
+          </div>
+          <div class="field">
+            <label for="content-takeaways">Key Takeaways (one per line)</label>
+            <textarea id="content-takeaways" placeholder="One takeaway per line"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Publish Module</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Existing Modules</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="admin-content-body"><tr><td colspan="4" class="text-muted">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

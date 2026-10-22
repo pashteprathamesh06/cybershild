@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Message Analyzer — CyberShield AI</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand"><span class="brand-mark">CS</span> CyberShield AI</div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html">🏠 Dashboard</a>
+      <div class="sidebar-section-label">Analyze</div>
+      <a href="url-analyzer.html">🔗 URL Analyzer</a>
+      <a href="message-analyzer.html" class="active">💬 Message Analyzer</a>
+      <a href="screenshot-analyzer.html">🖼️ Screenshot Analyzer</a>
+      <a href="compare.html">⚖️ Compare Messages</a>
+      <div class="sidebar-section-label">Learn</div>
+      <a href="simulator.html">🎯 Scam Simulator</a>
+      <a href="learning.html">📚 Learning Center</a>
+      <div class="sidebar-section-label">Records</div>
+      <a href="history.html">🕓 Scan History</a>
+      <a href="admin.html" data-admin-only class="hidden">🛡️ Admin Panel</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <h1>Message Analyzer</h1>
+        <p class="text-muted" style="margin:4px 0 0;">Paste any suspicious email, SMS, or chat message.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="user-chip" data-user-chip></div>
+        <button class="btn btn-secondary btn-sm" data-logout>Log Out</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:24px;">
+      <form id="message-form">
+        <div class="field">
+          <label for="channel-select">Message source</label>
+          <select id="channel-select">
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="telegram">Telegram</option>
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message-input">Message text</label>
+          <textarea id="message-input" placeholder="Paste the full message here..." required maxlength="10000"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="analyze-btn">
+          <span id="analyze-btn-text">Analyze Message</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="result-section" class="hidden">
+      <div class="card-grid" style="grid-template-columns: 220px 1fr; margin-bottom:24px;">
+        <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <div id="risk-gauge-container"></div>
+          <span class="badge" id="classification-badge">—</span>
+        </div>
+        <div class="card">
+          <h3 style="margin-bottom:4px;">Summary</h3>
+          <p id="result-summary" class="text-secondary">—</p>
+          <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:12px;">
+            <div><span class="text-muted" style="font-size:0.78rem;">SCAM CATEGORY</span><div id="result-category" class="mono" style="font-weight:600;">—</div></div>
+            <div><span class="text-muted" style="font-size:0.78rem;">CONFIDENCE</span><div id="result-confidence" class="mono" style="font-weight:600;">—</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:24px;">
+        <div class="card">
+          <h3>Suspicious Phrases</h3>
+          <div id="result-phrases"></div>
+        </div>
+        <div class="card">
+          <h3>Social Engineering Techniques</h3>
+          <div id="result-techniques"></div>
+        </div>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <h3>Prevention Tips</h3>
+          <ul id="result-tips" style="margin:0;"></ul>
+        </div>
+        <div class="card">
+          <h3>Recommended Action</h3>
+          <p id="result-action" class="text-secondary" style="margin:0;">—</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state">
+      <div class="icon">💬</div>
+      <p>Run your first message scan to see a full threat report here.</p>
+    </div>
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/message-analyzer.js"></script>
+</body>
+</html>
